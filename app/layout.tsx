@@ -7,6 +7,7 @@ import SiteFooter from "@/components/site-footer"
 import ThemeProvider from "@/components/theme-provider"
 import { ContentProvider } from "@/components/content-provider"
 import { getPublishedContent } from "@/lib/content-server"
+import { getSupabaseConfig, type SupabaseConfig } from "@/lib/supabase/config"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" })
@@ -43,11 +44,14 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const initial = await getPublishedContent()
+  // Only the URL and publishable key are passed to the browser; secret keys are rejected.
+  let supabase: SupabaseConfig | null = null
+  try { supabase = getSupabaseConfig() } catch { /* The admin page explains configuration errors. */ }
   return (
     <html lang="en" className={`${inter.variable} ${mono.variable}`} suppressHydrationWarning>
       <body className="flex min-h-screen flex-col font-sans">
         <ThemeProvider>
-          <ContentProvider initial={initial}>
+          <ContentProvider initial={initial} supabase={supabase}>
             <SiteHeader />
             <main className="flex-1 pt-24 md:pt-28">{children}</main>
             <SiteFooter />

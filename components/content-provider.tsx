@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react"
 import { fetchPublishedContent, publishContent } from "@/lib/content-browser"
-import { getSupabaseConfig } from "@/lib/supabase/config"
+import { getSupabaseConfig, setClientSupabaseConfig, type SupabaseConfig } from "@/lib/supabase/config"
 import type { Content } from "@/lib/content"
 import type { ContentSnapshot } from "@/lib/published-content"
 
@@ -13,7 +13,9 @@ type ContentContext = {
 }
 const Context = createContext<ContentContext | null>(null)
 
-export function ContentProvider({ children, initial }: { children: ReactNode; initial: ContentSnapshot }) {
+export function ContentProvider({ children, initial, supabase }: { children: ReactNode; initial: ContentSnapshot; supabase: SupabaseConfig | null }) {
+  // Make the server-provided Supabase config available to browser code before any effect runs.
+  if (typeof window !== "undefined") setClientSupabaseConfig(supabase)
   const [snapshot, setSnapshot] = useState(initial)
   const apply = useCallback((next: ContentSnapshot) => {
     setSnapshot(previous => next.revision > previous.revision ? next : { ...previous, error: next.error })

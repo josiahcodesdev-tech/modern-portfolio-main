@@ -74,7 +74,7 @@ export default function AdminAccess() {
   if (status === "loading") return <section className="container"><div className={card} aria-busy="true"><p className="text-dim">Loading…</p></div></section>
   if (status === "setup") return <section className="container"><div className={card}>
     <LockKeyhole className="mb-4 h-8 w-8 text-brand" /><h1 className="text-2xl font-bold text-fg">Connect Supabase</h1>
-    <p className="mt-3 text-sm text-dim">Add your Supabase URL and publishable key to .env.local, run supabase/setup.sql, then restart the dev server. See README.md.</p>
+    <p className="mt-3 text-sm text-dim">Set SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY in .env.local (and in Vercel for the live site), then restart or redeploy.</p>
     {message && <p role="alert" className="mt-4 text-sm text-red-500">{message}</p>}
   </div></section>
   if (status === "admin") return <AdminEditor email={email} onSignOut={() => { if (window.confirm("Sign out? Unpublished changes will be lost.")) void signOut() }} />
