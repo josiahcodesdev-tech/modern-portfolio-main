@@ -1,95 +1,25 @@
-# 🌌 Next-Gen Developer Portfolio 
+# Josiah Mwangi Portfolio
 
-🔥 **A futuristic, award-winning, and fully responsive developer portfolio** built with **Next.js 14**, **Tailwind CSS**, and **Three.js**. This is not just a portfolio, it’s an **immersive 3D experience** to showcase your projects, skills, and personality like never before.
+Personal developer portfolio built with Next.js 15 and Tailwind CSS.
 
----
+## Pages
 
-## ✨ Features
+- `/`: profile card, intro, skills strip, featured projects
+- `/about`: bio, experience, education, testimonials
+- `/skills`: frontend, backend, and tools & deployment
+- `/projects` and `/projects/[slug]`: all projects, each with its own detail page (tools, description, deliverables)
 
-✅ **Ultra-Premium Design**
+## Editing content
 
-* Glassmorphism & Neuromorphism effects
-* Animated 3D background (Three.js / WebGL)
-* Dark mode by default with light mode toggle
+- `lib/site.ts`: name, role, email, WhatsApp number, resume file, photo, GitHub/LinkedIn
+- `lib/data.ts`: skills, projects, experience, education, testimonials, open source work
 
-✅ **Interactive & Dynamic**
+Put images and your CV in `public/`, then point to them from those files. For example, set `photo: "/josiah.jpg"`, add `image: "/projects/gradelevate.png"` to a project, or set `resume: "/Josiah-Mwangi-Resume.pdf"`.
 
-* AI-powered chatbot assistant in contact section
-* Gamified projects showcase in a 3D galaxy
-* Animated skill matrix with hover effects
-
-✅ **Modern Tech Stack**
-
-* Next.js 14 (App Router)
-* Tailwind CSS & Radix UI components
-* Framer Motion & GSAP for buttery-smooth animations
-* SEO-optimized & PWA-ready
-
-✅ **Open Source & Developer-Friendly**
-
-* Clean, modular, and reusable code structure
-* Easy to maintain and extend
-
----
-
-## 🚀 Demo
-
-🌐 [**View Live Demo**](https://s10-modern-portfolio.vercel.app)
-
----
-
-## 🖥️ Tech Stack
-
-* ⚡ **Frontend:** Next.js 14, Tailwind CSS, Framer Motion
-* 🎨 **3D/Animations:** Three.js, GSAP, Lottie
-* ☁️ **Hosting:** Vercel
-* 🔥 **Features:** PWA, Responsive, SEO-optimized
-
----
-
-## 🛠️ Installation
+## Running locally
 
 ```bash
-# Clone the repository
-git clone https://github.com/senotron/modern-portfolio.git
-
-# Go to the project directory
-cd modern-portfolio
-
-# Install dependencies
-npm install
-
-# Run the development server
-npm run dev
-
-# Open http://localhost:3000 in your browser
+pnpm install
+pnpm dev      # http://localhost:3000
+pnpm build && pnpm start   # production build
 ```
-
----
-
-## ⭐ Contribution
-
-Contributions are welcome! Feel free to fork this repo and submit a pull request to improve this template.
-
----
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
-## 🌟 Why Use This Portfolio?
-
-This is **not** a boring developer portfolio.
-It’s **next-gen**, **SEO-friendly**, and designed to get you noticed by recruiters, clients, and open source communities.
-
-✔️ Optimized for **GitHub trending**
-✔️ Google search friendly
-✔️ Visually stunning & technically solid
-
----
-
-## 🤖 Crafted by AI
-
-This README and portfolio were **crafted by artificial intelligence** for maximum creativity, SEO, and developer appeal. ✨

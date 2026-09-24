@@ -3,128 +3,131 @@
 @tailwind utilities;
 
 @layer base {
+  /* Portfolio palette as RGB channels (used by tailwind.config.ts). Light is the base, .dark overrides. */
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --ink: 246 248 250;
+    --ink-card: 255 255 255;
+    --ink-raised: 234 238 242;
+    --ink-line: 208 215 222;
+    --brand: 26 127 55;
+    --brand-dark: 21 104 45;
+    --brand-fg: 255 255 255;
+    --fg: 31 35 40;
+    --dim: 89 99 110;
+    --soft: 49 55 62;
+    --badge: 218 240 224;
+    color-scheme: light;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --ink: 0 0 0;
+    --ink-card: 22 27 34;
+    --ink-raised: 45 55 72;
+    --ink-line: 48 54 61;
+    --brand: 86 211 100;
+    --brand-dark: 70 173 82;
+    --brand-fg: 0 0 0;
+    --fg: 255 255 255;
+    --dim: 146 155 141;
+    --soft: 202 204 206;
+    --badge: 255 255 255;
+    color-scheme: dark;
   }
-}
 
-@layer base {
+  /* shadcn/ui tokens (components/ui), mapped to the dark palette */
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 210 17% 82%;
+    --card: 215 21% 11%;
+    --card-foreground: 210 17% 82%;
+    --popover: 215 21% 11%;
+    --popover-foreground: 210 17% 82%;
+    --primary: 127 58% 58%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 215 15% 15%;
+    --secondary-foreground: 210 17% 82%;
+    --muted: 215 15% 15%;
+    --muted-foreground: 94 6% 58%;
+    --accent: 215 15% 15%;
+    --accent-foreground: 210 17% 82%;
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 212 12% 21%;
+    --input: 212 12% 21%;
+    --ring: 127 58% 58%;
+    --radius: 0.75rem;
+  }
+
   * {
     @apply border-border;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-ink text-soft antialiased transition-colors duration-300;
+  }
+
+  ::selection {
+    @apply bg-brand text-brand-fg;
   }
 }
 
-/* Custom animations */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
+@layer components {
+  .panel {
+    @apply rounded-[20px] border border-ink-line bg-ink-card shadow-sm dark:border-transparent dark:shadow-none;
   }
-  50% {
-    transform: translateY(-20px);
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-brand px-5 py-2.5 text-sm font-semibold text-brand-fg transition duration-300 hover:-translate-y-0.5 hover:bg-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-ink-card;
   }
-}
 
-@keyframes glow {
-  0%,
-  100% {
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-ink-line px-5 py-2.5 text-sm font-semibold text-fg transition duration-300 hover:border-brand hover:bg-brand hover:text-brand-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand;
   }
-  50% {
-    box-shadow: 0 0 40px rgba(0, 255, 255, 0.8);
+
+  .icon-btn {
+    @apply flex h-10 w-10 items-center justify-center rounded-md border border-ink-line text-brand transition duration-200 hover:scale-110;
   }
-}
 
-@keyframes liquidFlow {
-  0% {
-    background-position: 0% 50%;
+  .pill {
+    @apply whitespace-nowrap rounded-full border border-fg/70 px-4 py-1.5 text-sm text-dim;
   }
-  50% {
-    background-position: 100% 50%;
+
+  .marquee {
+    animation: marquee 30s linear infinite;
   }
-  100% {
-    background-position: 0% 50%;
+
+  .marquee-wrap:hover .marquee {
+    animation-play-state: paused;
   }
-}
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
 
-.animate-glow {
-  animation: glow 2s ease-in-out infinite alternate;
-}
+  .reveal-enter {
+    animation: reveal-enter 0.7s ease-out both;
+  }
 
-.liquid-gradient {
-  background: linear-gradient(-45deg, #00ffff, #ff00ff, #ffff00, #00ff00);
-  background-size: 400% 400%;
-  animation: liquidFlow 4s ease infinite;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+  @keyframes reveal-enter {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+  }
 
-.glass-morphism {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.neuro-morphism {
-  background: #1a1a1a;
-  box-shadow: 20px 20px 60px #0d0d0d, -20px -20px 60px #272727;
+  @media (prefers-reduced-motion: reduce) {
+    .marquee,
+    .reveal-enter {
+      animation: none;
+    }
+  }
 }

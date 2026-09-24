@@ -2,28 +2,40 @@ import type { Config } from "tailwindcss"
 
 const config: Config = {
   darkMode: ["class"],
-  content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-    "*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./lib/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: "1rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1280px",
       },
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-inter)"],
-        sora: ["var(--font-sora)"],
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       colors: {
+        // Portfolio palette (GitHub inspired). Values live in app/globals.css so they switch with the theme.
+        ink: {
+          DEFAULT: "rgb(var(--ink) / <alpha-value>)",
+          card: "rgb(var(--ink-card) / <alpha-value>)",
+          raised: "rgb(var(--ink-raised) / <alpha-value>)",
+          line: "rgb(var(--ink-line) / <alpha-value>)",
+        },
+        brand: {
+          DEFAULT: "rgb(var(--brand) / <alpha-value>)",
+          dark: "rgb(var(--brand-dark) / <alpha-value>)",
+          fg: "rgb(var(--brand-fg) / <alpha-value>)",
+        },
+        fg: "rgb(var(--fg) / <alpha-value>)",
+        dim: "rgb(var(--dim) / <alpha-value>)",
+        soft: "rgb(var(--soft) / <alpha-value>)",
+        badge: "rgb(var(--badge) / <alpha-value>)",
+
+        // shadcn/ui tokens (used by components/ui)
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -57,13 +69,6 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        chart: {
-          "1": "hsl(var(--chart-1))",
-          "2": "hsl(var(--chart-2))",
-          "3": "hsl(var(--chart-3))",
-          "4": "hsl(var(--chart-4))",
-          "5": "hsl(var(--chart-5))",
-        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -79,26 +84,10 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-20px)" },
-        },
-        glow: {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(0, 255, 255, 0.5)" },
-          "50%": { boxShadow: "0 0 40px rgba(0, 255, 255, 0.8)" },
-        },
-        liquidFlow: {
-          "0%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
-          "100%": { backgroundPosition: "0% 50%" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        float: "float 6s ease-in-out infinite",
-        glow: "glow 2s ease-in-out infinite alternate",
-        liquidFlow: "liquidFlow 4s ease infinite",
       },
     },
   },
