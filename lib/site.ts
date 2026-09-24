@@ -4,7 +4,7 @@ export const site = {
   shortName: "Josiah",
   role: "Web Developer",
   location: "Nairobi, Kenya",
-  url: "https://portfolio-seven-sand-92.vercel.app",
+  url: "https://josiahmwangi.vercel.app",
   description:
     "Josiah Mwangi is a web developer in Nairobi, Kenya, building fast, responsive websites and web applications.",
 
