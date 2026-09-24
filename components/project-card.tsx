@@ -55,11 +55,16 @@ export function ProjectImage({
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="group flex h-full flex-col rounded-[20px] border border-ink-line bg-ink-card p-5 transition duration-300 hover:-translate-y-1 hover:border-brand/60">
+    <article className="group flex h-full flex-col overflow-hidden rounded-[20px] border border-ink-line bg-ink-card p-5 transition duration-300 hover:-translate-y-1 hover:border-brand/60 light:rounded-2xl light:p-0 light:shadow-sm light:hover:border-ink-line light:hover:shadow-lg">
       <div className="relative">
-        <Link href={`/projects/${project.slug}`} aria-label={`View ${project.title}`} className="block overflow-hidden rounded-[10px]">
-          <ProjectImage project={project} className="transition duration-500 group-hover:scale-[1.03]" />
+        <Link href={`/projects/${project.slug}`} aria-label={`View ${project.title}`} className="block overflow-hidden rounded-[10px] light:rounded-none">
+          <ProjectImage project={project} className="transition duration-500 group-hover:scale-[1.03] light:rounded-none" />
         </Link>
+        {project.tools.length > 0 && (
+          <span className="absolute left-3 top-3 hidden rounded-full bg-brand px-3 py-1 text-xs font-semibold text-brand-fg shadow-sm light:inline-block">
+            {project.tools[0]}
+          </span>
+        )}
         {project.liveLink && (
           <a
             href={project.liveLink}
@@ -72,7 +77,11 @@ export default function ProjectCard({ project }: { project: Project }) {
           </a>
         )}
       </div>
-      <h3 className="mt-5 text-xl font-semibold text-fg">{project.title}</h3>
+      <div className="flex flex-1 flex-col light:px-6 light:pb-6">
+      {project.tools.length > 1 && (
+        <p className="mt-6 hidden text-xs font-medium text-brand light:block">{project.tools.slice(0, 3).join(" · ")}</p>
+      )}
+      <h3 className="mt-5 text-xl font-semibold text-fg light:mt-2 light:font-bold">{project.title}</h3>
       <p className="mt-2 flex-1 text-dim">{project.description}</p>
       {project.liveLink && (
         <a
@@ -87,6 +96,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       <Link href={`/projects/${project.slug}`} className="btn-primary mt-6 self-start">
         View Project <ArrowRight className="h-4 w-4" />
       </Link>
+      </div>
     </article>
   )
 }

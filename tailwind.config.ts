@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss"
 import animate from "tailwindcss-animate"
+import plugin from "tailwindcss/plugin"
 
 const config: Config = {
   darkMode: ["class"],
@@ -35,6 +36,8 @@ const config: Config = {
         dim: "rgb(var(--dim) / <alpha-value>)",
         soft: "rgb(var(--soft) / <alpha-value>)",
         badge: "rgb(var(--badge) / <alpha-value>)",
+        // Navy from the consulting site, used for light-mode bands (hero card, CTA, footer)
+        navy: "#0d1b2a",
 
         // shadcn/ui tokens (used by components/ui)
         border: "hsl(var(--border))",
@@ -92,7 +95,11 @@ const config: Config = {
       },
     },
   },
-  plugins: [animate],
+  plugins: [
+    animate,
+    // `light:` styles apply only when dark mode is off (light mode mimics the navy & gold consulting site)
+    plugin(({ addVariant }) => addVariant("light", ":root:not(.dark) &")),
+  ],
 } satisfies Config
 
 export default config

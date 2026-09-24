@@ -29,12 +29,12 @@ export default function HomePage() {
 
           <div className="flex flex-[2] flex-col gap-8 overflow-hidden">
             {/* Intro card */}
-            <div className="panel p-6 md:p-10">
-              <p className="text-dim">{copy.greeting}</p>
-              <p className="mt-4 text-2xl leading-snug text-fg md:text-3xl">
+            <div className="panel p-6 md:p-10 light:border-navy light:bg-navy light:bg-gradient-to-br light:from-navy light:to-[#1b2d44]">
+              <p className="text-dim light:eyebrow">{copy.greeting}</p>
+              <p className="mt-4 text-2xl leading-snug text-fg md:text-3xl light:font-semibold light:text-white">
                 {copy.introduction}
               </p>
-              <p className="mt-6 flex items-center gap-2 text-dim">
+              <p className="mt-6 flex items-center gap-2 text-dim light:text-white/75">
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-75" />
                   <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-brand" />
@@ -54,7 +54,8 @@ export default function HomePage() {
 
             {/* Skills strip */}
             <div className="panel p-6 md:p-10">
-              <h2 className="text-xl font-bold text-fg">Skills</h2>
+              <p className="eyebrow hidden light:block">What I work with</p>
+              <h2 className="text-xl font-bold text-fg light:mt-2">Skills</h2>
               <div className="marquee-wrap mt-9 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
                 <ul className="marquee flex w-max gap-5">
                   {[...skills, ...skills].map((skill, i) => (

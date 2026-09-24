@@ -3,19 +3,20 @@
 @tailwind utilities;
 
 @layer base {
-  /* Portfolio palette as RGB channels (used by tailwind.config.ts). Light is the base, .dark overrides. */
+  /* Portfolio palette as RGB channels (used by tailwind.config.ts). Light is the base, .dark overrides.
+     Light mode uses the navy & gold palette from portfolio-seven-sand-92.vercel.app. */
   :root {
-    --ink: 246 248 250;
-    --ink-card: 255 255 255;
-    --ink-raised: 234 238 242;
-    --ink-line: 208 215 222;
-    --brand: 26 127 55;
-    --brand-dark: 21 104 45;
-    --brand-fg: 255 255 255;
-    --fg: 31 35 40;
-    --dim: 89 99 110;
-    --soft: 49 55 62;
-    --badge: 218 240 224;
+    --ink: 255 255 255; /* #ffffff page */
+    --ink-card: 255 255 255; /* #ffffff cards */
+    --ink-raised: 248 241 227; /* #f8f1e3 gold light */
+    --ink-line: 229 231 235; /* #e5e7eb borders */
+    --brand: 201 151 43; /* #c9972b gold */
+    --brand-dark: 212 168 47; /* #d4a82f gold hover */
+    --brand-fg: 13 27 42; /* #0d1b2a navy on gold */
+    --fg: 13 27 42; /* #0d1b2a navy headings */
+    --dim: 107 114 128; /* #6b7280 muted text */
+    --soft: 26 26 46; /* #1a1a2e body text */
+    --badge: 248 241 227; /* #f8f1e3 gold light */
     color-scheme: light;
   }
 
@@ -77,23 +78,33 @@
 
 @layer components {
   .panel {
-    @apply rounded-[20px] border border-ink-line bg-ink-card shadow-sm dark:border-transparent dark:shadow-none;
+    @apply rounded-[20px] border border-ink-line bg-ink-card shadow-sm dark:border-transparent dark:shadow-none light:rounded-2xl;
+  }
+
+  /* Small gold uppercase label above headings (light mode) */
+  .eyebrow {
+    @apply text-sm font-medium uppercase tracking-[0.1em] text-brand;
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-md bg-brand px-5 py-2.5 text-sm font-semibold text-brand-fg transition duration-300 hover:-translate-y-0.5 hover:bg-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-ink-card;
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-brand px-5 py-2.5 text-sm font-semibold text-brand-fg transition duration-300 hover:-translate-y-0.5 hover:bg-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-ink-card light:rounded-full light:px-6 light:shadow-sm light:hover:translate-y-0;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 rounded-md border border-ink-line px-5 py-2.5 text-sm font-semibold text-fg transition duration-300 hover:border-brand hover:bg-brand hover:text-brand-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand;
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-ink-line px-5 py-2.5 text-sm font-semibold text-fg transition duration-300 hover:border-brand hover:bg-brand hover:text-brand-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand light:rounded-full light:px-6;
   }
 
   .icon-btn {
-    @apply flex h-10 w-10 items-center justify-center rounded-md border border-ink-line text-brand transition duration-200 hover:scale-110;
+    @apply flex h-10 w-10 items-center justify-center rounded-md border border-ink-line text-brand transition duration-200 hover:scale-110 light:rounded-full;
   }
 
   .pill {
-    @apply whitespace-nowrap rounded-full border border-fg/70 px-4 py-1.5 text-sm text-dim;
+    @apply whitespace-nowrap rounded-full border border-fg/70 px-4 py-1.5 text-sm text-dim light:border-transparent light:bg-[#f3f4f6] light:font-medium light:text-soft;
+  }
+
+  /* Light mode: navy footer band */
+  :root:not(.dark) .site-footer .icon-btn {
+    @apply border-white/20;
   }
 
   .marquee {

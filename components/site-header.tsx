@@ -26,15 +26,22 @@ export default function SiteHeader() {
 
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href))
 
+  const [firstName, ...otherNames] = site.name.split(" ")
   const logo = (
-    <Link href="/" className="font-mono text-2xl font-bold text-fg">
-      {site.shortName}
-      <span className="text-brand">.</span>
+    <Link href="/" className="text-2xl font-bold text-fg">
+      <span className="font-mono light:hidden">
+        {site.shortName}
+        <span className="text-brand">.</span>
+      </span>
+      {/* Light mode: "Josiah Mwangi" with the surname in gold, like the consulting site */}
+      <span className="hidden light:inline">
+        {firstName} <span className="text-brand">{otherNames.join(" ")}</span>
+      </span>
     </Link>
   )
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-ink">
+    <header className="fixed inset-x-0 top-0 z-50 bg-ink light:border-b light:border-ink-line light:bg-white/90 light:backdrop-blur-md">
       <div className="container flex h-20 items-center justify-between md:h-24">
         {logo}
 
@@ -44,7 +51,7 @@ export default function SiteHeader() {
               key={item.href}
               href={item.href}
               className={cn(
-                "px-4 py-2 text-[15px] font-semibold underline-offset-[5px] transition-colors hover:text-brand hover:underline",
+                "px-4 py-2 text-[15px] font-semibold underline-offset-[5px] transition-colors hover:text-brand hover:underline light:font-medium light:hover:no-underline",
                 isActive(item.href) ? "text-brand" : "text-soft",
               )}
             >
@@ -55,7 +62,7 @@ export default function SiteHeader() {
 
         <div className="flex items-center gap-3">
           <ThemeToggle />
-          <a href={mailto} className="btn-outline hidden md:inline-flex">
+          <a href={mailto} className="btn-outline hidden md:inline-flex light:border-brand light:bg-brand light:text-brand-fg light:shadow-sm light:hover:bg-brand-dark">
             Hire me
           </a>
           <button

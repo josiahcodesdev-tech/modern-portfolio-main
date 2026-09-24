@@ -13,8 +13,9 @@ export default function ProjectsPanel({ limit, as: Heading = "h2" }: { limit?: n
 
   return (
     <section className="container mt-8">
-      <Reveal className="panel px-4 py-10 sm:px-10">
-        <Heading className="text-center text-3xl font-bold text-fg">Projects</Heading>
+      <Reveal className="panel px-4 py-10 sm:px-10 light:border-transparent light:bg-transparent light:px-0 light:py-16 light:shadow-none">
+        <p className="eyebrow hidden text-center light:block">Our Work</p>
+        <Heading className="text-center text-3xl font-bold text-fg light:mt-3 light:text-4xl">Projects</Heading>
         <p className="mx-auto mt-4 max-w-xl text-center text-lg text-dim">
           {copy.projectsIntro}
         </p>
