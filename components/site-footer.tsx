@@ -1,8 +1,12 @@
+"use client"
+
 import Link from "next/link"
-import { nav, site } from "@/lib/site"
+import { nav } from "@/lib/site"
+import { useContent } from "@/components/content-provider"
 import SocialLinks from "@/components/social-links"
 
 export default function SiteFooter() {
+  const { content: { site } } = useContent()
   return (
     <footer className="container mt-8 pb-10">
       <div className="flex flex-col items-center justify-between gap-6 border-t border-ink-line pt-8 md:flex-row">
@@ -12,6 +16,7 @@ export default function SiteFooter() {
               {item.label}
             </Link>
           ))}
+        <Link href="/admin" className="text-dim transition hover:text-brand">Admin</Link>
         </nav>
         <SocialLinks />
       </div>

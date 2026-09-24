@@ -1,11 +1,14 @@
+"use client"
+
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import { projects } from "@/lib/data"
+import { useContent } from "@/components/content-provider"
 import ProjectCard from "@/components/project-card"
 import Reveal from "@/components/reveal"
 
 // Projects grid shared by the home page (first 3 + "View All") and the Projects page (all).
 export default function ProjectsPanel({ limit, as: Heading = "h2" }: { limit?: number; as?: "h1" | "h2" }) {
+  const { content: { projects, copy } } = useContent()
   const list = limit ? projects.slice(0, limit) : projects
 
   return (
@@ -13,8 +16,7 @@ export default function ProjectsPanel({ limit, as: Heading = "h2" }: { limit?: n
       <Reveal className="panel px-4 py-10 sm:px-10">
         <Heading className="text-center text-3xl font-bold text-fg">Projects</Heading>
         <p className="mx-auto mt-4 max-w-xl text-center text-lg text-dim">
-          A glimpse into what I&apos;ve been building, driven by curiosity and a passion for creating practical web
-          applications.
+          {copy.projectsIntro}
         </p>
         <div className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {list.map((project) => (

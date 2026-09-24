@@ -4,11 +4,14 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { Menu, X } from "lucide-react"
-import { mailto, nav, site } from "@/lib/site"
+import { nav } from "@/lib/site"
+import { useContent } from "@/components/content-provider"
 import { cn } from "@/lib/utils"
 import ThemeToggle from "@/components/theme-toggle"
 
 export default function SiteHeader() {
+  const { content: { site } } = useContent()
+  const mailto = `mailto:${site.email}`
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
 

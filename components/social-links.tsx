@@ -1,8 +1,12 @@
+"use client"
+
 import { Github, Linkedin, Mail } from "lucide-react"
-import { mailto, site } from "@/lib/site"
+import { useContent } from "@/components/content-provider"
 import { cn } from "@/lib/utils"
 
 export default function SocialLinks({ className }: { className?: string }) {
+  const { content: { site } } = useContent()
+  const mailto = `mailto:${site.email}`
   const links = [
     { href: site.socials.github, label: "GitHub", icon: Github },
     { href: site.socials.linkedin, label: "LinkedIn", icon: Linkedin },

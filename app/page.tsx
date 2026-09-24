@@ -1,13 +1,16 @@
+"use client"
+
 import Image from "next/image"
 import { Download } from "lucide-react"
-import { skills } from "@/lib/data"
-import { mailto, site } from "@/lib/site"
+import { useContent } from "@/components/content-provider"
 import Reveal from "@/components/reveal"
 import SocialLinks from "@/components/social-links"
 import ProjectsPanel from "@/components/projects-panel"
 import CtaSection from "@/components/cta-section"
 
 export default function HomePage() {
+  const { content: { site, skills, copy } } = useContent()
+  const mailto = `mailto:${site.email}`
   return (
     <>
       <section className="container">
@@ -27,17 +30,16 @@ export default function HomePage() {
           <div className="flex flex-[2] flex-col gap-8 overflow-hidden">
             {/* Intro card */}
             <div className="panel p-6 md:p-10">
-              <p className="text-dim">Hello There!</p>
+              <p className="text-dim">{copy.greeting}</p>
               <p className="mt-4 text-2xl leading-snug text-fg md:text-3xl">
-                I&apos;m {site.name}, a passionate {site.role} dedicated to building fast, responsive websites and web
-                applications that help businesses grow online.
+                {copy.introduction}
               </p>
               <p className="mt-6 flex items-center gap-2 text-dim">
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-75" />
                   <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-brand" />
                 </span>
-                Available for Freelancing
+                {copy.availability}
               </p>
               {site.resume ? (
                 <a href={site.resume} download className="btn-primary mt-9">
